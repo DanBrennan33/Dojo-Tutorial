@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF8">
+  <title>Taste of Dojo</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/dojo/1.10.1/dojo/dojo.js"></script>
+</head>
+<body>
+  <h1 id="source">Dojo can interrogate the DOM</h1>
+  <h2 id="destination"></h2>
+
+  <span id="gitHubData"></span>
+  <script>
+    require(["dojo/dom"], function(dom) {
+      dom.byId("destination").innerText = dom.byId("source").innerText;
+    });
+
+    require(["dojo/dom", "dojo/request"], function(dom, request) {
+      request.get("https://api.github.com/users/DanBrennan33").then(function(data) {
+        dom.byId("gitHubData").innerText = data;
+      });
+    });
+  </script>
+</body>
+</html>
